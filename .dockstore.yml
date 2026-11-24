@@ -2,5 +2,5 @@ version: 1.2
 workflows:
   - name: initial_screen_autosomes
     subclass: WDL
-    primaryDescriptorPath: /workflow/initial_screen_autosomes.wdl
+    primaryDescriptorPath: /workflow/01_initial_screen_autosomes.wdl
     topic: Screen single-sample GRCh37 VCFs for autosomal biallelic SNPs.
