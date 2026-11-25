@@ -12,3 +12,7 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflow/03_merge_N476_cohort.wdl
     topic: Merge screened GRCh37 VCFs separately for N476 autosomes and chromosome X.
+  - name: autosome_variant_coarse_filtering
+    subclass: WDL
+    primaryDescriptorPath: /workflow/04_autosome_variant_coarse_filtering.wdl
+    topic: Filter GRCh37 autosomal cohort variants with missingness above 5%; retain all samples.
