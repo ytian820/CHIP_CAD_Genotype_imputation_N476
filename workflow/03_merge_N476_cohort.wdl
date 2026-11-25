@@ -52,11 +52,11 @@ task MergeVcfs {
         bcftools --version
 
         ## Step 1. Build a tabix index beside every localized VCF.
-        vcf_list="~{output_prefix}.input_vcfs.list"
-        printf '%s\n' "~{sep='" "' vcfs}" > "$vcf_list"
-        while IFS= read -r vcf; do
+        vcf_list="~{write_lines(vcfs)}"        # one localized VCF path per line
+        while read -r vcf; do
             bcftools index --tbi --force "$vcf"
         done < "$vcf_list"
+        cp "$vcf_list" "~{output_prefix}.input_vcfs.list"
 
         ## Step 2. Merge, index and verify the output files.
         bcftools merge --no-version --merge none --threads 1 \
