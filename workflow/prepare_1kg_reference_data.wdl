@@ -11,11 +11,11 @@ workflow Prepare1kgReference {
     call Download1kgReference
 
     output {
-        File reference_pgen = Download1kgReference.reference_pgen
-        File reference_pvar = Download1kgReference.reference_pvar
-        File reference_psam = Download1kgReference.reference_psam
-        File population_panel = Download1kgReference.population_panel
-        File related_samples_out = Download1kgReference.related_samples_out
+        File reference_1kg_pgen = Download1kgReference.reference_1kg_pgen
+        File reference_1kg_pvar = Download1kgReference.reference_1kg_pvar
+        File reference_1kg_psam = Download1kgReference.reference_1kg_psam
+        File reference_1kg_population_panel = Download1kgReference.reference_1kg_population_panel
+        File reference_1kg_deg2_related_samples = Download1kgReference.reference_1kg_deg2_related_samples
     }
 }
 
@@ -50,11 +50,11 @@ task Download1kgReference {
     >>>
 
     output {
-        File reference_pgen = "reference.pgen"
-        File reference_pvar = "reference.pvar"
-        File reference_psam = "reference.psam"
-        File population_panel = "integrated_call_samples_v3.20130502.ALL.panel"
-        File related_samples_out = "deg2_phase3.king.cutoff.out.id"
+        File reference_1kg_pgen = "reference.pgen"
+        File reference_1kg_pvar = "reference.pvar"
+        File reference_1kg_psam = "reference.psam"
+        File reference_1kg_population_panel = "integrated_call_samples_v3.20130502.ALL.panel"
+        File reference_1kg_deg2_related_samples = "deg2_phase3.king.cutoff.out.id"
     }
 
     runtime {
