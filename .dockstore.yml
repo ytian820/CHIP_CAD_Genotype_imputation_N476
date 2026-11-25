@@ -16,3 +16,7 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflow/04_autosome_variant_coarse_filtering.wdl
     topic: Filter GRCh37 autosomal cohort variants with missingness above 5%; retain all samples.
+  - name: sample_call_rate_and_relatedness
+    subclass: WDL
+    primaryDescriptorPath: /workflow/05a_sample_call_rate_and_relatedness.wdl
+    topic: Report autosomal sample missingness and KING relatedness with suggested exclusion lists.
