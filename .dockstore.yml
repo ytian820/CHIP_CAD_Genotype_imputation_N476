@@ -20,3 +20,7 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflow/05a_sample_call_rate_and_relatedness.wdl
     topic: Report autosomal sample missingness and KING relatedness with suggested exclusion lists.
+  - name: prepare_1kg_reference_data
+    subclass: WDL
+    primaryDescriptorPath: /workflow/prepare_1kg_reference_data.wdl
+    topic: Download and decompress the 1KG Phase 3 GRCh37 reference and population and relatedness files.
