@@ -8,3 +8,7 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflow/02_initial_screen_chrX.wdl
     topic: Screen single-sample GRCh37 VCFs for chromosome X biallelic SNPs.
+  - name: merge_N476_cohort
+    subclass: WDL
+    primaryDescriptorPath: /workflow/03_merge_N476_cohort.wdl
+    topic: Merge screened GRCh37 VCFs separately for N476 autosomes and chromosome X.
