@@ -36,3 +36,7 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflow/05d_analyze_heterozygosity.wdl
     topic: Calculate autosomal PLINK F and flag heterozygosity outliers among EUR-predicted samples.
+  - name: infer_sex
+    subclass: WDL
+    primaryDescriptorPath: /workflow/05e_infer_sex.wdl
+    topic: Infer sample sex from GRCh37 non-PAR chromosome X for manual review; retain all samples.
