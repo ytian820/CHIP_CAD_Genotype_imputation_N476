@@ -32,3 +32,7 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflow/05c_ancestry_assignment.wdl
     topic: Assign 1KG super-population labels from projected PCs using random forest classification.
+  - name: analyze_heterozygosity
+    subclass: WDL
+    primaryDescriptorPath: /workflow/05d_analyze_heterozygosity.wdl
+    topic: Calculate autosomal PLINK F and flag heterozygosity outliers among EUR-predicted samples.
