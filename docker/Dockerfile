@@ -1,5 +1,5 @@
 # CHIP-CAD genotype QC and imputation tools; independent linux/amd64 build.
-# Build: docker build --platform linux/amd64 -t ytian820/chip_cad_genotype:1.0.0 docker
+# Build: docker build --platform linux/amd64 -t ytian820/chip_cad_genotype:1.1.0 docker
 
 # Part 1. Build BCFtools and HTSlib from official release sources.
 FROM ubuntu:24.04 AS builder
@@ -22,7 +22,7 @@ RUN curl -fsSL https://github.com/samtools/bcftools/releases/download/1.25/bcfto
 # Part 2. Install runtime tools and R packages on a clean Ubuntu base.
 FROM ubuntu:24.04
 LABEL org.opencontainers.image.title="CHIP_CAD_genotype" \
-      org.opencontainers.image.version="1.0.0"
+      org.opencontainers.image.version="1.1.0"
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates curl unzip python3 \
@@ -49,12 +49,24 @@ RUN curl -fsSL https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc 
         r-base-core r-cran-tidyverse r-cran-data.table \
     && rm -rf /var/lib/apt/lists/*
 
-# Part 3. Verify tools, plugins and R packages without research data.
+# Part 3. Preinstall ancestry-classification packages in an isolated Python environment.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends python3-venv \
+    && rm -rf /var/lib/apt/lists/* \
+    && python3 -m venv /opt/ancestry-venv
+ENV PATH="/opt/ancestry-venv/bin:${PATH}"
+RUN python -m pip install --no-cache-dir \
+        numpy==1.26.4 scipy==1.13.1 pandas==2.2.3 scikit-learn==1.5.2 \
+        joblib==1.4.2 threadpoolctl==3.5.0 \
+    && python -m pip check
+
+# Part 4. Verify tools and packages without research data.
 RUN bcftools --version \
     && bcftools plugin -l | grep -Fx fixref \
     && bgzip --version \
     && tabix --version \
     && plink2 --version \
     && python3 --version \
+    && python -c "import numpy, scipy, pandas, sklearn, joblib, threadpoolctl; print({m.__name__: m.__version__ for m in (numpy, scipy, pandas, sklearn, joblib, threadpoolctl)})" \
     && Rscript -e 'library(tidyverse); library(data.table); print(R.version.string); print(packageVersion("tidyverse")); print(packageVersion("data.table"))'
 CMD ["bash"]
