@@ -24,3 +24,7 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflow/prepare_1kg_reference_data.wdl
     topic: Download and decompress the 1KG Phase 3 GRCh37 reference and population and relatedness files.
+  - name: ancestry_1kg_projection
+    subclass: WDL
+    primaryDescriptorPath: /workflow/05b_ancestry_1kg_projection.wdl
+    topic: Build GRCh37 1KG reference PCA axes and project cohort samples onto the first 20 PCs.
