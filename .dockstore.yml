@@ -28,3 +28,7 @@ workflows:
     subclass: WDL
     primaryDescriptorPath: /workflow/05b_ancestry_1kg_projection.wdl
     topic: Build GRCh37 1KG reference PCA axes and project cohort samples onto the first 20 PCs.
+  - name: ancestry_assignment
+    subclass: WDL
+    primaryDescriptorPath: /workflow/05c_ancestry_assignment.wdl
+    topic: Assign 1KG super-population labels from projected PCs using random forest classification.
